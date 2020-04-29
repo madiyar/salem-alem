@@ -1,0 +1,18 @@
+.my-content {
+    background: #e6f4fd;
+    border-radius: 20px;
+    .my-nav {
+        .nav-link {
+            color: #444;
+            &:hover {
+                color: #000;
+            }
+            img {
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                box-shadow: 0 0 1em rgba(0,0,0,.1);
+            }
+        }
+    }
+}

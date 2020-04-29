@@ -1,0 +1,23 @@
+@import 'themes';
+
+@import '~@nebular/theme/styles/globals';
+
+@include nb-install() {
+  @include nb-theme-global();
+};
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed|Fredoka+One&display=swap');
+html {
+    height: 100%;
+	body {
+		font-family: 'Fira Sans Condensed', sans-serif;
+		background: linear-gradient(to bottom, rgb(72, 125, 240), rgb(12, 74, 167));
+		height: 100%;
+		margin: 0;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		.svg-inline--fa.fa-fw {
+			width: 1.25em;
+			margin: 4px 3px;
+		}
+	}
+}

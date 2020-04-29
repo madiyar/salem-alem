@@ -1,0 +1,40 @@
+<nz-layout class="main">
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <div class="logo"></div>
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li nz-menu-item>
+                <i nz-icon nzType="appstore"></i> <span>Курстар</span>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon nzType="book"></i> <span>Кітапхана</span>
+            </li>
+            <li nz-submenu nzTitle="User" nzIcon="user">
+                <ul>
+                    <li nz-menu-item>Tom</li>
+                    <li nz-menu-item>Bill</li>
+                    <li nz-menu-item>Alex</li>
+                </ul>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+            <i
+                class="trigger"
+                nz-icon
+                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+                (click)="isCollapsed = !isCollapsed"
+            ></i>
+        </nz-header>
+        <nz-content>
+            <nz-breadcrumb>
+                <nz-breadcrumb-item>User</nz-breadcrumb-item>
+                <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+            </nz-breadcrumb>
+            <div class="inner-content">
+                Bill is a cat.
+            </div>
+        </nz-content>
+        <nz-footer>©2020 Salem Alem</nz-footer>
+    </nz-layout>
+</nz-layout>

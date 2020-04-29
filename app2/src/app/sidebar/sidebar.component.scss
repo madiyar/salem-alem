@@ -1,0 +1,43 @@
+.sidebar {
+	padding: 10px 25px;
+	.salem-logo {
+		font-family: 'Fredoka One', cursive;
+		font-size: 1.5em;
+		display: block;
+		padding: 15px 10px;
+		text-align: center;
+		color: #fff;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	.list-card {
+		border-radius: 10px;
+		border: 1px solid rgba(0,0,0,.1);
+		background: #fff;
+		box-shadow: 0 .5em 1em rgba(0,0,0,.1);
+		a {
+			display: flex;
+			padding: 10px;
+			border-bottom: 1px solid rgba(0,0,0,.1);
+			transition: background 0.3s ease-out;
+			img {
+				border-radius: 999rem;
+			}
+			div {
+				padding: 0 10px;
+			}
+			&:hover {
+				text-decoration: none;
+				background: #f4f4f4;
+			}
+			&:first-child {
+				border-radius: 10px 10px 0 0;
+			}
+			&:last-child {
+				border-radius: 0 0 10px 10px;
+				border-bottom: 0;
+			}
+		}
+	}
+}
