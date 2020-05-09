@@ -1,0 +1,25 @@
+<form nz-form [formGroup]="form" class="login-form" (ngSubmit)="submitForm()">
+    <h1>Админ-панель</h1>
+    <nz-alert 
+        nzType="error" 
+        nzMessage="Логин немесе пароль қате еңгізіңізілді" 
+        nzShowIcon 
+        *ngIf="authFailed"
+        style="margin-bottom: 10px"
+    ></nz-alert>
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Поштаңызды еңгізіңіз">
+            <nz-input-group nzPrefixIcon="mail">
+                <input type="email" nz-input formControlName="email" placeholder="Пошта" (ngModelChange)="resetError()" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Құпиясөз 8 символдан тұруы қажет">
+            <nz-input-group nzPrefixIcon="lock">
+                <input type="password" nz-input formControlName="password" placeholder="Password" (ngModelChange)="resetError()" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Кіру</button>
+</form>

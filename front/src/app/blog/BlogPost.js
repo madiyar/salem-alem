@@ -15,7 +15,7 @@ const BlogPost = ({ post, getOnePost }) => {
     return post ? (
         <div>
             <div className="postWrap" style={{
-                    background: `rgba(0, 0, 0, 0) url("${API_URL}/blog_posters/${post.poster}") no-repeat scroll 0% 0% / cover`,
+                    background: `rgba(0, 0, 0, 0) url("${API_URL}/${post.poster}") no-repeat scroll 0% 0% / cover`,
                 }}>
                 <div className="postHeader">
                     <Row justify="space-between">

@@ -1,0 +1,73 @@
+<form nz-form [formGroup]="form" (ngSubmit)="onSubmit()" class="blog-form">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item routerLink="/main"><i nz-icon nzType="home"></i></nz-breadcrumb-item>
+        <nz-breadcrumb-item>
+            <a routerLink="/main/book"><i nz-icon nzType="book"></i> <span>Кітаптар</span></a>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>{{ title }}</nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div nz-row style="margin-top:20px">
+        <div nz-col [nzSpan]="16" style="padding-right: 20px;">
+            <nz-form-item>
+                <nz-input-group>
+                    <nz-form-control nzErrorTip="Кітаптың атын еңгізіңіз" style="margin-bottom: 20px;">
+                        <input
+                            type="text"
+                            nz-input
+                            formControlName="name"
+                            placeholder="Кітап аты"
+                        />
+                    </nz-form-control>
+                    <nz-form-control nzErrorTip="Кітаптың авторын еңгізіңіз" style="margin-bottom: 20px;">
+                        <input
+                            type="text"
+                            nz-input
+                            formControlName="author"
+                            placeholder="Кітап авторы"
+                        />
+                    </nz-form-control>
+                    <nz-form-control nzErrorTip="Сілтемені еңгізіңіз" style="margin-bottom: 20px;">
+                        <input
+                            type="text"
+                            nz-input
+                            formControlName="fileUrl"
+                            placeholder="Кітапқа сілтеме"
+                        />
+                    </nz-form-control>
+                    <nz-form-control nzErrorTip="Сипаттама еңгізіңіз" style="margin-bottom: 20px;">
+                        <textarea 
+                            rows="4" 
+                            nz-input 
+                            formControlName="description"
+                            placeholder="Кітаптың сипаттамасы"
+                        ></textarea>
+                    </nz-form-control>
+                </nz-input-group>
+                <button nz-button nzType="primary"><i nz-icon nzType="check" nzTheme="outline"></i> Сақтау</button>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8" class="img-upload-col">
+            <nz-upload
+                class="poster-uploader"
+                nzAction="{{ env.apiUrl }}/uploader/image"
+                nzName="file"
+                nzListType="picture-card"
+                [nzShowUploadList]="false"
+                (nzChange)="handleChange($event)"
+                nzTooltipTitle="Постер" 
+                nz-tooltip
+            >
+                <ng-container *ngIf="!form.get('poster').value">
+                    <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'picture'"></i>
+                    <div class="ant-upload-text">Постер</div>
+                </ng-container>
+                <img 
+                    *ngIf="form.get('poster').value" 
+                    [src]="env.assetsUrl + '/' + form.get('poster').value" 
+                    class="poster"
+                    style="width:300px"
+                />
+            </nz-upload>
+        </div>
+    </div>
+</form>

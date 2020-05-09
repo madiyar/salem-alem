@@ -1,0 +1,67 @@
+<form nz-form [formGroup]="form" (ngSubmit)="onSubmit()" class="blog-form">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item routerLink="/main"><i nz-icon nzType="home"></i></nz-breadcrumb-item>
+        <nz-breadcrumb-item>
+            <a routerLink="/main/blog"><i nz-icon nzType="file-text"></i> <span>Мақалалар</span></a>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>{{ title }}</nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div nz-row style="margin-top:20px">
+        <div nz-col [nzSpan]="18">
+            <nz-form-item>
+                <nz-input-group>
+                    <nz-form-control nzErrorTip="Тақырыбын еңгізіңіз">
+                        <input
+                            type="text"
+                            nz-input
+                            formControlName="title"
+                            placeholder="Тақырыбы"
+                        />
+                    </nz-form-control>
+                </nz-input-group>
+                <editor
+                    style="margin:20px 0"
+                    apiKey="v9lm19bv2b8pv3kzdgf16y26jx2kyvz64oz38thdm6hkecyd"
+                    [init]="{
+                    height: 400,
+                    language: 'kk',
+                    menubar: false,
+                    plugins: [
+                        'advlist autolink lists link image charmap print preview anchor',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table paste code help wordcount'
+                    ],
+                    toolbar:
+                        'undo redo | formatselect | bold italic backcolor | \
+                        alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | removeformat | help'
+                    }"
+                    formControlName="text"
+                ></editor>
+                <button nz-button nzType="primary"><i nz-icon nzType="check" nzTheme="outline"></i> Сақтау</button>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="6" class="img-upload-col">
+            <nz-upload
+                class="poster-uploader"
+                nzAction="{{ env.apiUrl }}/uploader/image"
+                nzName="file"
+                nzListType="picture-card"
+                [nzShowUploadList]="false"
+                (nzChange)="handleChange($event)"
+                nzTooltipTitle="Постер" 
+                nz-tooltip
+            >
+                <ng-container *ngIf="!form.get('poster').value">
+                    <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'picture'"></i>
+                    <div class="ant-upload-text">Постер</div>
+                </ng-container>
+                <img 
+                    *ngIf="form.get('poster').value" 
+                    [src]="env.assetsUrl + '/' + form.get('poster').value" 
+                    class="poster"
+                />
+            </nz-upload>
+        </div>
+    </div>
+</form>

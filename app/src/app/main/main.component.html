@@ -1,13 +1,21 @@
 <nz-layout class="main">
     <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-        <div class="logo"></div>
         <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-            <li nz-menu-item>
-                <i nz-icon nzType="appstore"></i> <span>Курстар</span>
+            <li nz-menu-item class="logo">
+                <a routerLink="/main">
+                    <i nz-icon nzType="home" [nzTheme]="'fill'" style="font-size: 18px;"></i> <span>SalemAlem</span>
+                </a>
             </li>
-            <li nz-menu-item>
-                <i nz-icon nzType="book"></i> <span>Кітапхана</span>
+
+            <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                <a routerLink="/main/blog"><i nz-icon nzType="file-text"></i> <span>Мақалалар</span></a>
             </li>
+            <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+                <a routerLink="/main/book">
+                    <i nz-icon nzType="book"></i> <span>Кітапхана</span>
+                </a>
+            </li>
+            <!--
             <li nz-submenu nzTitle="User" nzIcon="user">
                 <ul>
                     <li nz-menu-item>Tom</li>
@@ -15,6 +23,7 @@
                     <li nz-menu-item>Alex</li>
                 </ul>
             </li>
+            -->
         </ul>
     </nz-sider>
     <nz-layout>
@@ -25,16 +34,12 @@
                 [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
                 (click)="isCollapsed = !isCollapsed"
             ></i>
+            <button nz-button nzShape="round" nzSize="large" style="float:right;margin:10px" [routerLink]="['/']">
+                <i nz-icon nzType="user"></i> <span>Шығу</span>
+            </button>
         </nz-header>
         <nz-content>
-            <nz-breadcrumb>
-                <nz-breadcrumb-item>User</nz-breadcrumb-item>
-                <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
-            </nz-breadcrumb>
-            <div class="inner-content">
-                Bill is a cat.
-            </div>
+            <div class="inner-content"><router-outlet></router-outlet></div>
         </nz-content>
-        <nz-footer>©2020 Salem Alem</nz-footer>
     </nz-layout>
 </nz-layout>

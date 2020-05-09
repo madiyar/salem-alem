@@ -1,0 +1,13 @@
+.img-upload-col {
+    padding-left: 20px;
+    .poster-uploader {
+        width: 100%;
+        .poster {
+            width: 100%;
+        }
+    }
+}
+:host ::ng-deep .poster-uploader > .ant-upload {
+    width: 100% !important;
+    height: 150px;
+}

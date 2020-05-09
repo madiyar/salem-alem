@@ -1,0 +1,52 @@
+<div nz-row>
+    <div nz-col [nzSpan]="4" style="padding-right: 20px;">
+        <button 
+            nz-button 
+            nzSize="large" 
+            routerLink="/main/book/new" 
+            nzType="primary" 
+            nzShape="round" 
+            style="margin-bottom: 20px;width: 100%;"
+        >
+            <i nz-icon nzType="plus" nzTheme="outline"></i> Жаңа кітап
+        </button>
+    </div>
+    <div nz-col [nzSpan]="20">
+        <nz-input-group [nzSuffix]="suffixIconSearch" nzSize="large">
+            <input 
+                type="text" 
+                nz-input 
+                [(ngModel)]="searchQuery" 
+                (ngModelChange)="search()" 
+                placeholder="Кітаптың аты бойынша іздеу" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+            <i nz-icon nzType="search"></i>
+        </ng-template>
+    </div>
+</div>
+<nz-table #table [nzData]="booksToShow"  [nzPageSize]="3">
+    <tbody>
+        <tr *ngFor="let item of table.data">
+            <td nz-row>
+                <div nz-col [nzSpan]="4">
+                    <img [src]="env.apiUrl + '/' + item.poster" style="width:150px" />
+                </div>
+                <div nz-col [nzSpan]="20">
+                    <h2>{{ item.name }}</h2>
+                    <p nz-typography nzEllipsis [nzEllipsisRows]="5">
+                        {{ item.description }}
+                    </p>
+                    <button 
+                        nz-button 
+                        nzType="primary" 
+                        nzGhost 
+                        style="margin-right: 10px;" 
+                        [routerLink]="['/main/book', item.id]"
+                    >Өзгерту</button>
+                    <button nz-button nzType="danger" nzGhost>Жою</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

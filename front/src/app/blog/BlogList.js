@@ -21,7 +21,7 @@ const BlogList = ({ pageSize = 5, blog, getAllBlog }) => {
                 renderItem={item => (
                     <List.Item
                         key={item.id}
-                        extra={<img width={450} alt={item.title} src={`${API_URL}/blog_posters/${item.poster}`} />}
+                        extra={<img width={450} alt={item.title} src={`${API_URL}/${item.poster}`} />}
                     >
                         <List.Item.Meta
                             title={

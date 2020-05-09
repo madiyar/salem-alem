@@ -1,0 +1,49 @@
+<div nz-row>
+    <div nz-col [nzSpan]="4" style="padding-right: 20px;">
+        <button 
+            nz-button 
+            nzSize="large" 
+            routerLink="/main/blog/new" 
+            nzType="primary" 
+            nzShape="round" 
+            style="margin-bottom: 20px;width: 100%;"
+        >
+            <i nz-icon nzType="plus" nzTheme="outline"></i> Жаңа мақала
+        </button>
+    </div>
+    <div nz-col [nzSpan]="20">
+        <nz-input-group [nzSuffix]="suffixIconSearch" nzSize="large">
+            <input 
+                type="text" 
+                nz-input 
+                [(ngModel)]="searchQuery" 
+                (ngModelChange)="search()" 
+                placeholder="Мақаланың тақырыбы бойынша іздеу" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+            <i nz-icon nzType="search"></i>
+        </ng-template>
+    </div>
+</div>
+<nz-table #table [nzData]="dataToShow" [nzPageSize]="3">
+    <tbody>
+        <tr *ngFor="let item of table.data">
+            <td nz-row [nzGutter]="24">
+                <div nz-col [nzSpan]="18">
+                    <div>
+                        <h2>{{ item.title }}</h2>
+                        <p>{{ item.postedAt }}</p>
+                    </div>
+                    <p nz-typography nzEllipsis [nzEllipsisRows]="3" style="text-align: justify;">
+                        <span>{{item.text | striphtml}}</span>
+                    </p>
+                    <button nz-button nzType="primary" nzGhost style="margin-right: 10px;" [routerLink]="['/main/blog', item.id]">Өзгерту</button>
+                    <button nz-button nzType="danger" nzGhost>Жою</button>
+                </div>
+                <div nz-col [nzSpan]="6" class="poster">
+                    <img width="272" alt="logo" [src]="env.assetsUrl + '/' + item.poster" />
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
