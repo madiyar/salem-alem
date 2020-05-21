@@ -1,23 +1,19 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { Progress } from "../entities/Progress";
+import { Test } from "../entities/Test";
 
 @Injectable()
-export class ProgressService {
+export class TestService {
 
     constructor(
-        @InjectRepository(Progress)
-        private readonly respository: Repository<Progress>
+        @InjectRepository(Test)
+        private readonly respository: Repository<Test>
     ) {}
 
     // GET ALL IN TABLE
     getAll(criteria = {}) {
         return this.respository.find(criteria);
-    }
-
-    getOne(criteria = {}) {
-        return this.respository.findOne(criteria);
     }
 
     // GET BY ID
@@ -26,12 +22,12 @@ export class ProgressService {
     }
 
     // INSERT INTO
-    create(data: Progress) {
+    create(data: Test) {
         return this.respository.save(data);
     }
 
     // UPDATE
-    update(id: number, data: Partial<Progress>) {
+    update(id: number, data: Partial<Test>) {
         return this.respository.update(id, data);
     }
 

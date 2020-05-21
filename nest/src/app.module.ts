@@ -21,6 +21,8 @@ import { Blog } from './salem/entities/Blog';
 import { Comment } from './salem/entities/Comment';
 import { QuestionCategory } from './salem/entities/QuestionCategory';
 import { Question } from './salem/entities/Question';
+import { Test } from './salem/entities/Test';
+import { Liked } from './salem/entities/Liked';
 
 @Module({
   imports: [
@@ -30,8 +32,13 @@ import { Question } from './salem/entities/Question';
       username: 'root',
       password: '',
       database: 'diplom',
-      entities: [Course, Section, Chapter, User, Progress, Book, Blog, Comment, QuestionCategory, Question],
-      synchronize: false,
+      entities: [
+        Course, Section, Chapter, 
+        User, Progress, Book, Blog, 
+        Comment, QuestionCategory, 
+        Question, Test, Liked
+      ],
+      synchronize: true,
     }),
     CourseModule,
     MulterModule.register({

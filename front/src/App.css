@@ -137,3 +137,17 @@
   padding: 25px;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.062), rgba(0, 0, 0, 0.747));
 }
+
+.course-progress {
+  display: inline-block;
+  padding: 20px;
+  box-shadow: 0 0 1em rgba(73, 106, 167, 0.3);
+}
+
+.course-progress .courseName {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.4em;
+}

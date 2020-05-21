@@ -16,6 +16,7 @@ import UserProfile from './user/UserProfile';
 import BlogPost from './blog/BlogPost';
 import CategoriesList from './qna/CategoriesList';
 import QuestionPage from './qna/QuestionPage';
+import Test from './course/Test';
 
 const { Header, Content } = Layout;
 
@@ -41,6 +42,7 @@ function Main() {
                                 <Route exact path="/"><Home /></Route>
                                 <Route path="/course/:url/:chapterId?"><Course /></Route>
                                 <Route path="/course"><Courses /></Route>
+                                <Route path="/test/:url/:courseId"><Test /></Route>
                                 <Route path="/library/:bookId"><Book /></Route>
                                 <Route path="/library"><BooksList /></Route>
                                 <Route path="/blog/:postId"><BlogPost /></Route>

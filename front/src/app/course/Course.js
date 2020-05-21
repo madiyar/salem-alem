@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { Typography, Spin, Breadcrumb, Row, Col, Collapse, List } from 'antd';
+import { Typography, Spin, Breadcrumb, Row, Col, Collapse, List, Button, Divider } from 'antd';
 import { HomeOutlined, AppstoreOutlined, DownOutlined } from '@ant-design/icons';
 import { getOneCourse, getChapter } from '../redux/effects/courses.effects';
 import { API_URL } from '../redux/types';
@@ -49,7 +49,9 @@ const Course = ({ course, sections, chapter, getOneCourse, getChapter }) => {
                         <Typography.Title level={2}>{chapter.name}</Typography.Title>
                         <div dangerouslySetInnerHTML={{__html: chapter.text}}></div>
                     </div> : 
-                    <Comments type="course" targetId={course.id} />
+                    <div>
+                        <Comments type="course" targetId={course.id} />
+                    </div>
                 }
             </Col>
             <Col span={6} className="rightSider">
@@ -69,6 +71,17 @@ const Course = ({ course, sections, chapter, getOneCourse, getChapter }) => {
                         </Panel>
                     ) : null}
                 </Collapse>
+                <Divider />
+                <div style={{padding:'10px'}}>
+                    <Button
+                        type="primary"
+                        size="large"
+                        shape="round"
+                        style={{width:'100%'}}
+                    >
+                        <Link to={`/test/${course.url}/${course.id}`}>Тесттен өту</Link>
+                    </Button>
+                </div>
             </Col>
         </Row>
     ) : <div><Spin size="large" style={{margin: '50px'}} /></div>;

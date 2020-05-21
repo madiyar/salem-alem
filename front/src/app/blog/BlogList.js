@@ -1,22 +1,51 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getAllBlog } from '../redux/effects/blog.effects';
-import { List, Typography } from 'antd';
+import { List, Typography, Input } from 'antd';
 import { CalendarOutlined } from '@ant-design/icons';
 import { API_URL } from '../redux/types';
 import { Link } from 'react-router-dom';
 
+const { Search } = Input;
+
 const BlogList = ({ pageSize = 5, blog, getAllBlog }) => {
+
+    const [showBlog, setShowBlog] = useState();
+
     useEffect(() => {
         getAllBlog();
     }, [getAllBlog]);
 
+    useEffect(() => {
+        if(blog) {
+            setShowBlog(blog)
+        }
+    }, [blog])
+
+    const onSearch = (value) => {
+        if(value) {
+            setShowBlog(showBlog.filter(
+                item => item.title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+            ));
+        } else {
+            setShowBlog(blog);
+        }
+    }
+
     return blog ? (
         <div className="padding25">
+            {pageSize > 1 ? 
+                <Search
+                    placeholder="Мақаланы іздеу"
+                    enterButton="Іздеу"
+                    size="large"
+                    onSearch={value => onSearch(value)}
+                /> : null
+            }
             <List
                 itemLayout="vertical"
                 size="large"
-                dataSource={blog}
+                dataSource={showBlog}
                 pagination={{pageSize: pageSize}}
                 renderItem={item => (
                     <List.Item

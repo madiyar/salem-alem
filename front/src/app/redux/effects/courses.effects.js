@@ -1,4 +1,4 @@
-import { setAllCourses, setCoursesLoading, setOneCourse, setCourseSections, setChapter } from "../actions/courses.actions";
+import { setAllCourses, setCoursesLoading, setOneCourse, setCourseSections, setChapter, setTests } from "../actions/courses.actions";
 import { API_URL } from "../types";
 
 export function getAllCourses() {
@@ -68,5 +68,19 @@ export function getChapter(id) {
                     dispatch(setChapter(chapter));
                 }
             })
+    }
+}
+
+export function getTests(id) {
+    return function(dispatch, getState) {
+        return fetch(`${API_URL}/courses/${id}/tests`)
+            .then(res => res.json())
+            .then(tests => {
+                if (!tests || !tests.length) {
+                    dispatch(setTests(null));
+                    return;
+                }
+                dispatch(setTests(tests));
+            });
     }
 }

@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getUser } from '../redux/effects/user.effects';
-import { Typography, Breadcrumb, Avatar, Row, Col, Button } from 'antd';
+import { getUser, getProgress } from '../redux/effects/user.effects';
+import { Typography, Breadcrumb, Avatar, Row, Col, Button,Progress } from 'antd';
 import { HomeOutlined, UserOutlined, MailOutlined, GlobalOutlined } from '@ant-design/icons';
 import { API_URL } from '../redux/types';
 import Comments from '../shared/Comments';
 
-const UserProfile = ({ user, getUser }) => {
+const UserProfile = ({ user, progress, getUser, getProgress }) => {
     const {userId} = useParams();
     useEffect(() => {
-        if(userId) getUser(userId);
-    }, [userId, getUser]);
+        if(userId) {
+            getUser(userId);
+            getProgress(userId);
+        }
+    }, [userId, getUser, getProgress]);
 
     return user ? (
         <div>
@@ -34,14 +37,22 @@ const UserProfile = ({ user, getUser }) => {
                     </div>
                 </Col>
             </Row>
+            {progress ? progress.map(item => <div className="padding25" style={{paddingBottom:0}} key={item.id}>
+                <Link to={`/test/${item.course.url}/${item.course.id}`}>
+                    <div className="course-progress">
+                        <Progress type="circle" percent={item.percent} />
+                        <span className="courseName">{item.course.name}</span>
+                    </div>
+                </Link>
+            </div>) : null}
             <Comments type="user" targetId={user.id} />
         </div>
     ) : null;
 }
 
 const mapStateToProps = state => ({
-    user: state.users.user
-
+    user: state.users.user,
+    progress: state.users.progress,
 });
 
-export default connect(mapStateToProps, { getUser })(UserProfile);
+export default connect(mapStateToProps, { getUser, getProgress })(UserProfile);

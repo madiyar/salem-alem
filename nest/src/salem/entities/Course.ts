@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Section } from "./Section";
+import { Progress } from "./Progress";
 
 @Entity({name: 'courses'})
 export class Course {
@@ -21,4 +22,7 @@ export class Course {
 
     @OneToMany(type => Section, section => section.courseId)
     sections: Promise<Section[]>;
+    
+    @OneToMany(type => Progress, progress => progress.courseId)
+    progress: Promise<Progress[]>;
 }

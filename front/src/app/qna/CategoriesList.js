@@ -6,6 +6,7 @@ import { UserOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import { API_URL } from '../redux/types';
 
+const { Search } = Input;
 const { Option } = Select;
 
 const CategoriesList = ({categories, questions, getAllCategories, getAllQuestions}) => {
@@ -13,12 +14,28 @@ const CategoriesList = ({categories, questions, getAllCategories, getAllQuestion
     const user = JSON.parse(localStorage.getItem('user'));
     const [modal, setModal] = useState(false);
     const [toQuestion, setToQuestion] = useState(null);
+    const [showQuestions, setShowQuestion] = useState();
 
     useEffect(() => {
         getAllCategories();
         getAllQuestions(categoryId);
     }, [getAllCategories, getAllQuestions, categoryId]);
 
+    useEffect(() => {
+        if(questions) {
+            setShowQuestion(questions)
+        }
+    }, [questions])
+
+    const onSearch = (value) => {
+        if(value) {
+            setShowQuestion(showQuestions.filter(
+                item => item.title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+            ));
+        } else {
+            setShowQuestion(questions);
+        }
+    }
     const addQuestion = (data) => {
         if(user) {
             const options = {
@@ -87,7 +104,7 @@ const CategoriesList = ({categories, questions, getAllCategories, getAllQuestion
                     <List
                         itemLayout="vertical"
                         size="large"
-                        dataSource={questions}
+                        dataSource={showQuestions}
                         pagination={{pageSize: 5}}
                         renderItem={item => (
                             <List.Item key={item.id}>
@@ -122,6 +139,12 @@ const CategoriesList = ({categories, questions, getAllCategories, getAllQuestion
                 }
             </Col>
             <Col span={7} className="rightSider">
+                <Search
+                    placeholder="Сұрақты іздеу"
+                    enterButton="Іздеу"
+                    size="large"
+                    onSearch={value => onSearch(value)}
+                />
                 <Menu mode="inline" defaultSelectedKeys={[categoryId ? ""+categoryId : "0"]}>
                     <Menu.Item key="0"><Link to="/qna">Барлық сұрақтар</Link></Menu.Item>
                     {categories ? categories.map(category => 

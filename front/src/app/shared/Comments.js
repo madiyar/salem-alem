@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getComments } from '../redux/effects/comments.effects';
 import { Divider, Comment, Avatar, Typography, Empty, Form, Input, Button, Alert } from 'antd';
-import { RollbackOutlined, DeleteOutlined } from '@ant-design/icons';
+import { RollbackOutlined, DeleteOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { API_URL } from '../redux/types';
 import { Link } from 'react-router-dom';
 
@@ -82,9 +82,15 @@ const Comments = ({type, targetId, comments, getComments}) => {
                         />
                     }
                     content={<p>{comment.msg}</p>}
-                    actions={ user && (user.id === comment.user.id) ? 
-                        [<span onClick={() => deleteComment(comment.id)}><DeleteOutlined /> Жою</span>] : 
-                        [<span onClick={() => reply(comment.user)}><RollbackOutlined /> Жауап беру</span>]
+                    actions={ (user.id === comment.user.id) ? 
+                        [
+                            <span onClick={() => deleteComment(comment.id)}><DeleteOutlined /> Жою</span>,
+                            <span><HeartFilled /> {comment.likeCount}</span>
+                        ] : 
+                        [
+                            <span onClick={() => reply(comment.user)}><RollbackOutlined /> Жауап беру</span>,
+                            <span><HeartFilled /> {comment.likeCount}</span>
+                        ]
                     }
                 />
             ) : (<Empty description="Пікірлер қалтырылмады" style={{marginBottom: '25px'}} />)}

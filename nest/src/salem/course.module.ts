@@ -12,6 +12,8 @@ import { Blog } from "./entities/Blog";
 import { Comment } from "./entities/Comment";
 import { QuestionCategory } from "./entities/QuestionCategory";
 import { Question } from "./entities/Question";
+import { Test } from "./entities/Test";
+import { Liked } from "./entities/Liked";
 
 // Controllers
 import { CoursesController } from "./controllers/courses.controller";
@@ -25,6 +27,8 @@ import { UploaderController } from "./controllers/uploader.controller";
 import { CommentsController } from "./controllers/comments.controller";
 import { QuestionCategoryController } from "./controllers/question.category.controller";
 import { QuestionsController } from "./controllers/questions.controller";
+import { TestsController } from "./controllers/tests.controller";
+import { LikedController } from "./controllers/liked.controller";
 
 // Services
 import { CourseService } from "./services/course.service";
@@ -37,10 +41,17 @@ import { BlogService } from "./services/blog.service";
 import { CommentService } from "./services/comment.service";
 import { QuestionCategoryService } from "./services/question.category.service";
 import { QuestionService } from "./services/question.service";
+import { TestService } from "./services/test.service";
+import { LikedService } from "./services/liked.service";
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([Course, Section, Chapter, User, Progress, Book, Blog, Comment, QuestionCategory, Question])
+        TypeOrmModule.forFeature([
+            Course, Section, Chapter, 
+            User, Progress, Book, Blog, 
+            Comment, QuestionCategory, 
+            Question, Test, Liked
+        ])
     ],
     exports: [TypeOrmModule],
     controllers: [
@@ -54,7 +65,9 @@ import { QuestionService } from "./services/question.service";
         UploaderController,
         CommentsController,
         QuestionCategoryController,
-        QuestionsController
+        QuestionsController, 
+        TestsController,
+        LikedController
     ],
     providers: [
         CourseService,
@@ -66,7 +79,9 @@ import { QuestionService } from "./services/question.service";
         BlogService,
         CommentService,
         QuestionCategoryService,
-        QuestionService
+        QuestionService,
+        TestService,
+        LikedService
     ]
 })
 export class CourseModule {}

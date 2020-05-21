@@ -1,4 +1,4 @@
-import { GET_ALL_COURSES, COURSES_LOADING, GET_ONE_COURSE, GET_COURSE_SECTIONS, GET_CHAPTER } from "../types";
+import { GET_ALL_COURSES, COURSES_LOADING, GET_ONE_COURSE, GET_COURSE_SECTIONS, GET_CHAPTER, GET_TESTS } from "../types";
 
 export const setAllCourses = courses => {
     return {
@@ -32,5 +32,12 @@ export const setChapter = chapter => {
     return {
         type: GET_CHAPTER,
         payload: chapter
+    }
+}
+
+export const setTests = tests => {
+    return {
+        type: GET_TESTS,
+        payload: tests
     }
 }

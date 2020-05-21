@@ -17,6 +17,11 @@ export class ProgressController {
     getById(@Param('id') id: number) {
         return this.progressService.getById(id);
     }
+    
+    @Get('user/:id/:courseId')
+    getUserProgress(@Param('id') id: number, @Param('courseId') courseId: number) {
+        return this.progressService.getOne({where: {userId: id, courseId: courseId}});
+    }
 
     @Post()
     createProgress(@Body() data) {

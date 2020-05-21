@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
 import { User } from "./User";
+import { Liked } from "./Liked";
 
 @Entity({name: 'comments'})
 export class Comment {
@@ -22,4 +23,7 @@ export class Comment {
 
     @ManyToOne(type => User, user => user.id, {eager: true})
     user: User;
+    
+    @OneToMany(type => Liked, liked => liked.commentId)
+    likes: Promise<Liked[]>;
 }

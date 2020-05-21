@@ -11,7 +11,21 @@ export function getComments(type, targetId) {
                     dispatch(setComments(null));
                     return;
                 }
-                dispatch(setComments(comments));
+                let allComments = [];
+                comments.map(comment => {
+                    let allLikes = [];
+                    let likeCount = 0;
+                    fetch(`${API_URL}/liked/comment/${comment.id}`)
+                    .then(res => res.json())
+                    .then(likes => {
+                        likes.map(like => {
+                            allLikes.push(like);
+                            likeCount++;
+                        })
+                    });
+                    allComments.push({...comment, likes: allLikes, likeCount: likeCount});
+                })
+                dispatch(setComments(allComments));
             })
             .finally(() => {
                 dispatch(setCommentsLoading(false));
