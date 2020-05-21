@@ -16,6 +16,6 @@ export class Chapter {
     @Column()
     sectionId: number; // ID Раздела
 
-    @ManyToOne(type => Section, section => section.id, {eager: true})
+    @ManyToOne(type => Section, section => section.id, {eager: true}) //+
     section: Section;
 }

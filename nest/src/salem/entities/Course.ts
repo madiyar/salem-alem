@@ -20,9 +20,9 @@ export class Course {
     @Column()
     url: string; // Коротка ссылка на курс
 
-    @OneToMany(type => Section, section => section.courseId)
+    @OneToMany(type => Section, section => section.courseId) //+
     sections: Promise<Section[]>;
     
-    @OneToMany(type => Progress, progress => progress.courseId)
+    @OneToMany(type => Progress, progress => progress.courseId) //+
     progress: Promise<Progress[]>;
 }

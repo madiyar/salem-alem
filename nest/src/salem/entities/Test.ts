@@ -18,6 +18,6 @@ export class Test {
     @Column() answer3: string;
     @Column() answer: string;
 
-    @ManyToOne(type => Course, course => course.id)
+    @ManyToOne(type => Course, course => course.id) //+
     course: Course;
 }

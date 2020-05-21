@@ -23,10 +23,10 @@ export class Question {
     @Column({default: 0})
     answerId: number;
 
-    @ManyToOne(type => User, user => user.id, {eager: true})
+    @ManyToOne(type => User, user => user.id, {eager: true}) //+
     user: User;
 
-    @ManyToOne(type => QuestionCategory, category => category.id, {eager: true})
+    @ManyToOne(type => QuestionCategory, category => category.id, {eager: true}) //+
     category: QuestionCategory;
 
 }

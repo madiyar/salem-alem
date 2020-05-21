@@ -21,7 +21,7 @@ export class Comment {
     @Column({type: 'text'})
     msg: string;
 
-    @ManyToOne(type => User, user => user.id, {eager: true})
+    @ManyToOne(type => User, user => user.id, {eager: true}) //+
     user: User;
     
     @OneToMany(type => Liked, liked => liked.commentId)

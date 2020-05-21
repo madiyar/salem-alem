@@ -10,6 +10,6 @@ export class QuestionCategory {
     @Column()
     name: string;
     
-    @OneToMany(type => Question, questions => questions.categoryId)
+    @OneToMany(type => Question, questions => questions.categoryId) //+
     questions: Promise<Question[]>;
 }

@@ -31,13 +31,13 @@ export class User {
     @Column({type: 'bool', default: 0})
     isAdmin: boolean;
 
-    @OneToMany(type => Progress, progress => progress.userId)
+    @OneToMany(type => Progress, progress => progress.userId) //+
     progress: Promise<Progress[]>;
 
-    @OneToMany(type => Comment, comments => comments.userId)
+    @OneToMany(type => Comment, comments => comments.userId) //+
     comments: Promise<Comment[]>;
 
-    @OneToMany(type => Question, questions => questions.userId)
+    @OneToMany(type => Question, questions => questions.userId) //+
     questions: Promise<Question[]>;
     
     @OneToMany(type => Liked, liked => liked.userId)

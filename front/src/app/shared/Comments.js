@@ -82,7 +82,7 @@ const Comments = ({type, targetId, comments, getComments}) => {
                         />
                     }
                     content={<p>{comment.msg}</p>}
-                    actions={ (user.id === comment.user.id) ? 
+                    actions={ (user && (user.id === comment.user.id)) ? 
                         [
                             <span onClick={() => deleteComment(comment.id)}><DeleteOutlined /> Жою</span>,
                             <span><HeartFilled /> {comment.likeCount}</span>

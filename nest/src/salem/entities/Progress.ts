@@ -17,9 +17,9 @@ export class Progress {
     @Column()
     percent: number;
 
-    @ManyToOne(type => Course, course => course.id, {eager: true})
+    @ManyToOne(type => Course, course => course.id, {eager: true}) //+
     course: Course;
 
-    @ManyToOne(type => User, user => user.id, {eager: true})
+    @ManyToOne(type => User, user => user.id, {eager: true}) //+
     user: User;
 }

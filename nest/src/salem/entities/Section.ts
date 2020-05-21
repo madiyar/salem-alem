@@ -16,9 +16,9 @@ export class Section {
 
     // @ManyToOne(type => Category, category => category.id, {eager: true})
     // eager: true returns child table's data too
-    @ManyToOne(type => Course, course => course.id)
+    @ManyToOne(type => Course, course => course.id) //+
     course: Course;
     
-    @OneToMany(type => Chapter, chapter => chapter.sectionId)
+    @OneToMany(type => Chapter, chapter => chapter.sectionId) //+
     chapters: Promise<Chapter[]>;
 }
