@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Tabs, Form, Input, Button, Select, Alert, Menu } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, LogoutOutlined } from '@ant-design/icons';
 import { API_URL } from '../redux/types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const { TabPane } = Tabs;
 const { Option } = Select;
@@ -22,6 +22,7 @@ const cities = [
 
 const UserHeader = () => {
     const [authFailed, setAuthFailed] = useState(false);
+    const [authed, setAuthed] = useState(false);
     const user = JSON.parse(localStorage.getItem('user'));
     
     const userAuth = (data) => {
@@ -38,7 +39,7 @@ const UserHeader = () => {
                 return;
             }
             localStorage.setItem('user', JSON.stringify(user));
-            window.location.reload();
+            setAuthed(true);
         });
     }
         
@@ -64,7 +65,7 @@ const UserHeader = () => {
                 return;
             }
             localStorage.setItem('user', JSON.stringify(user));
-            window.location.reload();
+            setAuthed(true);
         });
         console.log(data);
     }
@@ -83,6 +84,7 @@ const UserHeader = () => {
 
     return !user ? (
         <div className="UserHeader">
+            {!authed ? <Redirect to="/" /> : null}
             <Tabs defaultActiveKey="1" onChange={callback} size="large" style={{margin:0}}>
                 <TabPane tab="Кіру" key="1">
                     <Form name="auth" onFinish={userAuth} onFinishFailed={userAuthFailed}>

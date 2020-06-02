@@ -85,11 +85,9 @@ const Comments = ({type, targetId, comments, getComments}) => {
                     actions={ (user && (user.id === comment.user.id)) ? 
                         [
                             <span onClick={() => deleteComment(comment.id)}><DeleteOutlined /> Жою</span>,
-                            <span><HeartFilled /> {comment.likeCount}</span>
                         ] : 
                         [
                             <span onClick={() => reply(comment.user)}><RollbackOutlined /> Жауап беру</span>,
-                            <span><HeartFilled /> {comment.likeCount}</span>
                         ]
                     }
                 />
